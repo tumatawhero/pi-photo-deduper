@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Deduper</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #1a1a1a; color: #fff; }
+        .header { background: #2a2a2a; padding: 20px; text-align: center; }
+        .stats { display: flex; gap: 20px; justify-content: center; margin: 10px 0; }
+        .stat { background: #333; padding: 10px 20px; border-radius: 8px; }
+        .stat.pending { border-left: 4px solid #f90; }
+        .stat.approved { border-left: 4px solid #f44; }
+        .stat.skipped { border-left: 4px solid #4af; }
+        .pairs { padding: 20px; }
+        .pair { background: #2a2a2a; border-radius: 10px; margin-bottom: 20px; padding: 15px; }
+        .pair.approved { border-left: 4px solid #f44; }
+        .pair.skipped { border-left: 4px solid #4af; }
+        .pair.pending { border-left: 4px solid #f90; }
+        .images { display: flex; gap: 15px; align-items: flex-start; }
+        .img-box { flex: 1; text-align: center; }
+        .img-box img { max-width: 100%; max-height: 300px; border-radius: 6px; cursor: pointer; }
+        .img-path { font-size: 11px; color: #aaa; margin-top: 5px; word-break: break-all; }
+        .actions { display: flex; gap: 10px; margin-top: 15px; justify-content: center; }
+        .btn { padding: 10px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold; }
+        .btn-delete1 { background: #c0392b; color: white; }
+        .btn-delete2 { background: #e74c3c; color: white; }
+        .btn-skip { background: #2980b9; color: white; }
+        .btn-undo { background: #555; color: white; }
+        .status-badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; margin-left: 10px; }
+        .badge-approved { background: #c0392b; }
+        .badge-skipped { background: #2980b9; }
+        .badge-pending { background: #f39c12; }
+        .filter-bar { text-align: center; padding: 10px; }
+        .filter-btn { padding: 8px 20px; margin: 3px; border: none; border-radius: 5px; cursor: pointer; background: #444; color: white; }
+        .filter-btn.active { background: #f90; color: black; }
+        .delete-confirm { background: #c0392b; padding: 10px; border-radius: 6px; margin-top: 10px; text-align: center; display: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📷 Photo Deduper</h1>
+        <div class="stats">
+            <div class="stat pending">⏳ Pending: <strong id="cnt-pending">{{ pending }}</strong></div>
+            <div class="stat approved">🗑️ To Delete: <strong id="cnt-approved">{{ approved }}</strong></div>
+            <div class="stat skipped">⏭️ Skipped: <strong id="cnt-skipped">{{ skipped }}</strong></div>
+            <div class="stat">📊 Total Pairs: <strong>{{ total }}</strong></div>
+        </div>
+    </div>
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPairs('all', this)">All</button>
+        <button class="filter-btn" onclick="filterPairs('pending', this)">Pending</button>
+        <button class="filter-btn" onclick="filterPairs('approved', this)">To Delete</button>
+        <button class="filter-btn" onclick="filterPairs('skipped', this)">Skipped</button>
+    </div>
+    <div class="pairs">
+        {% for pair in pairs %}
+        <div class="pair {{ pair.status }}" id="pair-{{ loop.index }}">
+            <div>
+                <strong>Pair {{ loop.index }}</strong>
+                <span class="status-badge badge-{{ pair.status }}">{{ pair.status }}</span>
+            </div>
+            <div class="images">
+                <div class="img-box">
+                    <img src="/image?path={{ pair.img1 }}" onclick="window.open(this.src)">
+                    <div class="img-path">{{ pair.img1 }}</div>
+                    <button class="btn btn-delete1" onclick="markDelete('{{ pair.id }}', '{{ pair.img1 }}', {{ loop.index }})">🗑️ Delete This</button>
+                </div>
+                <div class="img-box">
+                    <img src="/image?path={{ pair.img2 }}" onclick="window.open(this.src)">
+                    <div class="img-path">{{ pair.img2 }}</div>
+                    <button class="btn btn-delete2" onclick="markDelete('{{ pair.id }}', '{{ pair.img2 }}', {{ loop.index }})">🗑️ Delete This</button>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn btn-skip" onclick="skipPair('{{ pair.id }}', {{ loop.index }})">⏭️ Keep Both</button>
+                <button class="btn btn-undo" onclick="undoPair('{{ pair.id }}', {{ loop.index }})">↩️ Undo</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function markDelete(id, path, idx) {
+            if (!confirm('Move this photo to trash folder? You can recover it from ~/pi-photo-deduper/trash')) return;
+            fetch('/decide', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id, action:'approved'})})
+            .then(() => fetch('/delete', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({path})}))
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok) {
+                    document.getElementById('pair-'+idx).className = 'pair approved';
+                    updateCounts();
+                } else alert('Error: ' + data.error);
+            });
+        }
+
+        function skipPair(id, idx) {
+            fetch('/decide', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id, action:'skipped'})})
+            .then(() => {
+                document.getElementById('pair-'+idx).className = 'pair skipped';
+                updateCounts();
+            });
+        }
+
+        function undoPair(id, idx) {
+            fetch('/decide', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id, action:'pending'})})
+            .then(() => {
+                document.getElementById('pair-'+idx).className = 'pair pending';
+                updateCounts();
+            });
+        }
+
+        function updateCounts() {
+            let pending = document.querySelectorAll('.pair.pending').length;
+            let approved = document.querySelectorAll('.pair.approved').length;
+            let skipped = document.querySelectorAll('.pair.skipped').length;
+            document.getElementById('cnt-pending').textContent = pending;
+            document.getElementById('cnt-approved').textContent = approved;
+            document.getElementById('cnt-skipped').textContent = skipped;
+        }
+
+        function filterPairs(status, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.pair').forEach(p => {
+                p.style.display = (status === 'all' || p.classList.contains(status)) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

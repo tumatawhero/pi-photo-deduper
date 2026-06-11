@@ -1,0 +1,79 @@
+nohup: ignoring input
+2026-06-10 22:59:14,188: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2017/01/20170117_171702.jpg:
+broken data stream when reading image file
+2026-06-10 22:59:52,428: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2017/02/20170204_175539.jpg:
+broken data stream when reading image file
+/home/toby/.local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (149817600 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-10 23:03:22,220: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182552.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182552.heic'
+2026-06-10 23:03:22,257: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183937.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183937.heic'
+2026-06-10 23:03:22,279: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184155.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184155.heic'
+2026-06-10 23:03:31,238: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_135350.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_135350.heic'
+2026-06-10 23:03:31,277: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_133601.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_133601.heic'
+2026-06-10 23:03:31,311: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182429.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182429.heic'
+2026-06-10 23:03:31,344: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134649.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134649.heic'
+2026-06-10 23:03:31,378: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134834.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134834.heic'
+2026-06-10 23:03:40,107: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184038.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184038.heic'
+2026-06-10 23:03:40,139: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183627.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183627.heic'
+2026-06-10 23:03:40,555: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183952.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_183952.heic'
+2026-06-10 23:03:42,694: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184039.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184039.heic'
+2026-06-10 23:03:55,826: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182527.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_182527.heic'
+2026-06-10 23:04:04,561: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184032.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240920_184032.heic'
+2026-06-10 23:04:04,597: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_135349.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_135349.heic'
+2026-06-10 23:04:05,267: WARNING Invalid image file /mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134652.heic:
+cannot identify image file '/mnt/nas/tumatawhero/Photos/PhotoLibrary/2024/09/20240927_134652.heic'
+/home/toby/.local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (103794480 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/home/toby/.local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (111087716 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/home/toby/.local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (130051200 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/home/toby/.local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (144000000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/home/toby/.local/lib/python3.13/site-packages/imagededup/methods/hashing.py:317: RuntimeWarning: Parameter num_enc_workers has no effect since encodings are already provided
+  warnings.warn('Parameter num_enc_workers has no effect since encodings are already provided', RuntimeWarning)
+2026-06-10 23:11:20,216: INFO Start: Evaluating hamming distances for getting duplicates
+2026-06-10 23:11:20,216: INFO Start: Retrieving duplicates using Cython Brute force algorithm
+Scanning /mnt/nas/tumatawhero/Photos/PhotoLibrary recursively...
+Found 1913 images (videos excluded)
+Processed 0/1913...
+Processed 100/1913...
+Processed 200/1913...
+Processed 300/1913...
+Processed 400/1913...
+Processed 500/1913...
+Processed 600/1913...
+Processed 700/1913...
+Processed 800/1913...
+Processed 900/1913...
+Processed 1000/1913...
+Processed 1100/1913...
+Processed 1200/1913...
+Processed 1300/1913...
+Processed 1400/1913...
+Processed 1500/1913...
+Processed 1600/1913...
+Processed 1700/1913...
+Processed 1800/1913...
+Processed 1900/1913...
+Encoded 1895 images, finding duplicates...
+  0%|          | 0/1895 [00:00<?, ?it/s]  0%|          | 1/1895 [00:00<22:40,  1.39it/s] 21%|██        | 401/1895 [00:01<00:04, 343.33it/s] 42%|████▏     | 801/1895 [00:02<00:02, 448.24it/s] 63%|██████▎   | 1201/1895 [00:02<00:01, 505.58it/s] 84%|████████▍ | 1601/1895 [00:03<00:00, 573.54it/s]100%|██████████| 1895/1895 [00:03<00:00, 571.10it/s]
+2026-06-10 23:11:23,734: INFO End: Retrieving duplicates using Cython Brute force algorithm
+2026-06-10 23:11:23,735: INFO End: Evaluating hamming distances for getting duplicates
+Found 558 images with duplicates
+Results saved to /home/toby/pi-photo-deduper/duplicates.json
